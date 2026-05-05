@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitud - LifeBeat</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    form {
+      max-width: 350px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      margin-top: 15px;
+      border-radius: 12px;
+      border: none;
+      background: #22c55e;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .volver {
+      background: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>📩 Solicitar Servicio</h1>
+  <h2 id="tipoServicio"></h2>
+
+  <form onsubmit="enviarSolicitud(event)">
+    <input type="text" id="nombre" placeholder="Tu nombre" required>
+    <input type="tel" id="telefono" placeholder="Tu teléfono" required>
+    <input type="text" id="direccion" placeholder="Tu dirección" required>
+    <textarea id="problema" placeholder="Describe el problema" required></textarea>
+
+    <button type="submit">Buscar ayuda ahora</button>
+  </form>
+
+  <button class="volver" onclick="location.href='servicios.html'">
+    ⬅ Volver
+  </button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const servicio = params.get("servicio") || "Servicio";
+    document.getElementById("tipoServicio").innerText = servicio;
+
+    function enviarSolicitud(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const telefono = document.getElementById("telefono").value;
+      const direccion = document.getElementById("direccion").value;
+      const problema = document.getElementById("problema").value;
+
+      const mensaje = "Hola necesito ayuda\n" +
+"Nombre: " + nombre + "\n" +
+"Teléfono: " + telefono + "\n" +
+"Dirección: " + direccion + "\n" +
+"Problema: " + problema;
+
+const numero = "8657245038"; // 👈 pon tu número
+
+window.open("https://wa.me/" + numero + "?text=" + encodeURIComponent(mensaje));
+      
+        
+        
+        
+        
+        
+      
+    }
+  </script>
+
+</body>
+</html>
